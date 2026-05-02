@@ -1,1 +1,296 @@
+1) Definição do requisito funcional de usuário:
+-O usuário deve ser capaz de realizar cadastro no sistema.
+1) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-O usuário acessa a opção “Criar conta”.
+O sistema exibe formulário com os campos:
+ Nome completo (obrigatório) 
+ E-mail (obrigatório) 
+ Senha (obrigatório) 
+ Confirmação de senha (obrigatório)
+ O usuário preenche os campos. 
+ O sistema valida:
+  Campos obrigatórios preenchidos 
+  Formato do e-mail válido 
+  Senha com mínimo de caracteres
+  O sistema verifica se o e-mail já existe no banco. 
+  O sistema criptografa a senha. 
+  O sistema armazena os dados. 
+  O sistema cria um identificador único para o usuário. 
+  O sistema exibe mensagem de sucesso. 
+  O sistema redireciona para tela de login.
+Fluxo de Eventos de Exceção:
+  E1: Campo obrigatório vazio → sistema exibe alerta e impede avanço 
+  E2: E-mail inválido → sistema solicita correção 
+  E3: Senhas não coincidem → sistema bloqueia cadastro 
+  E4: E-mail já cadastrado → sistema informa duplicidade 
+  E5: Falha no banco de dados → sistema exibe erro e não salva
+-
 
+2) Definição do requisito funcional de usuário:
+-Login no sistema
+2) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário acessa tela de login. 
+  Informa e-mail e senha. 
+  Sistema valida formato dos dados. 
+  Sistema consulta banco. 
+  Sistema compara senha criptografada. 
+  Sistema cria sessão de usuário. 
+  Sistema redireciona para página inicial.
+Fluxo de Eventos de Exceção:
+-  E1: Usuário não encontrado 
+  E2: Senha incorreta 
+  E3: Conta bloqueada após tentativas
+-
+
+3) Definição do requisito funcional de usuário:
+-Visualizar produtos
+3) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário acessa página inicial. 
+  Sistema consulta banco de produtos. 
+  Sistema recupera:
+  Nome 
+  Preço 
+  Imagem 
+  Descrição resumida
+  Sistema organiza lista. 
+  Sistema exibe produtos na tela. 
+  Usuário pode selecionar produto.
+Fluxo de Eventos de Exceção:
+-  E1: Nenhum produto cadastrado 
+  E2: Falha no banco
+-
+
+
+4) Definição do requisito funcional de usuário:
+-Adicionar ao carrinho
+4) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário seleciona produto. 
+  Clica em “Adicionar ao carrinho”. 
+  Sistema verifica disponibilidade. 
+  Sistema adiciona item ao carrinho. 
+  Sistema atualiza quantidade. 
+  Sistema recalcula valor total. 
+  Sistema exibe confirmação.
+Fluxo de Eventos de Exceção:
+-  Produto sem estoque 
+  Erro ao adicionar
+-
+
+5) Definição do requisito funcional de usuário:
+-Remover item do carrinho	
+5) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário acessa carrinho. 
+  Seleciona item. 
+  Clica em remover. 
+  Sistema remove item. 
+  Sistema atualiza total.
+Fluxo de Eventos de Exceção:
+-Item inexistente
+-
+
+6) Definição do requisito funcional de usuário:
+-Finalizar Pedido
+6) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário acessa carrinho. 
+  Clica em finalizar. 
+  Sistema solicita:
+  Endereço 
+  Forma de pagamento
+  Usuário informa dados. 
+  Sistema valida informações. 
+  Sistema calcula total final. 
+  Sistema envia para pagamento. 
+  Sistema confirma pagamento. 
+  Sistema gera pedido. 
+  Sistema atualiza estoque. 
+  Sistema envia confirmação.
+Fluxo de Eventos de Exceção:
+-  Pagamento recusado 
+  Dados inválidos 
+  Produto indisponível
+
+
+
+
+7) Definição do requisito funcional de usuário:
+-O aluno deve ser capaz de realizar matrícula em disciplinas.
+7) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  O aluno acessa o módulo “Matrícula”. 
+  O sistema exibe lista de disciplinas disponíveis. 
+  O sistema apresenta:
+  Nome da disciplina 
+  Código 
+  Professor responsável 
+  Horário 
+  Número de vagas disponíveis
+
+
+  O aluno seleciona uma ou mais disciplinas. 
+  O sistema verifica:
+  Conflito de horário 
+  Pré-requisitos
+
+
+  O sistema valida disponibilidade de vagas. 
+  O sistema registra matrícula no banco. 
+  O sistema atualiza quantidade de vagas. 
+  O sistema confirma matrícula ao aluno. 
+  O sistema gera comprovante de matrícula.
+Fluxo de Eventos de Exceção:
+-  E1: Disciplina sem vaga → matrícula negada 
+  E2: Conflito de horário → sistema impede seleção 
+  E3: Pré-requisito não cumprido → bloqueio 
+  E4: Período encerrado → acesso negado 
+  E5: Falha no banco → operação cancelada
+-
+
+8) Definição do requisito funcional de usuário:
+-O cliente deve ser capaz de realizar transferência bancária.
+8) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Cliente acessa opção “Transferência”. 
+  Sistema solicita:
+  Conta de destino 
+  Valor 
+  Tipo de transferência (TED/PIX)
+
+
+  Cliente preenche dados. 
+  Sistema valida:
+  Formato da conta 
+  Valor positivo
+
+
+  Sistema verifica saldo disponível. 
+  Sistema solicita confirmação (senha ou biometria). 
+  Cliente confirma operação. 
+  Sistema realiza débito na conta origem. 
+  Sistema realiza crédito na conta destino. 
+  Sistema registra transação. 
+  Sistema exibe comprovante.
+Fluxo de Eventos de Exceção:
+-  E1: Saldo insuficiente 
+  E2: Conta inválida 
+  E3: Falha de autenticação 
+  E4: Sistema indisponível 
+  E5: Limite diário excedido
+-
+
+9) Definição do requisito funcional de usuário:
+-O professor deve lançar notas dos alunos.
+9) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Professor acessa sistema. 
+  Seleciona disciplina. 
+  Sistema exibe lista de alunos matriculados. 
+  Professor seleciona aluno. 
+  Professor insere notas (provas, trabalhos, etc.). 
+  Sistema valida valores (ex: 0 a 10). 
+  Sistema calcula média automaticamente. 
+  Sistema armazena notas no banco. 
+  Sistema atualiza situação do aluno (aprovado/reprovado). 
+  Sistema exibe confirmação.
+Fluxo de Eventos de Exceção:
+-  E1: Nota fora do intervalo permitido 
+  E2: Disciplina não atribuída ao professor 
+  E3: Falha no salvamento 
+  E4: Dados incompletos
+-
+
+
+10) Definição do requisito funcional de usuário:
+-O usuário deve recuperar senha esquecida.
+10) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  Usuário acessa “Esqueci minha senha”. 
+  Sistema solicita e-mail. 
+  Usuário informa e-mail. 
+  Sistema verifica existência do e-mail. 
+  Sistema gera token de recuperação. 
+  Sistema envia link para o e-mail. 
+  Usuário acessa link. 
+  Sistema solicita nova senha. 
+  Usuário informa nova senha. 
+  Sistema valida critérios de segurança. 
+  Sistema atualiza senha no banco. 
+  Sistema confirma alteração.
+Fluxo de Eventos de Exceção:
+-  E1: E-mail não encontrado 
+  E2: Token expirado 
+  E3: Senha inválida 
+  E4: Falha no envio de e-mail
+-
+
+11) Definição do requisito funcional de usuário:
+-O usuário deve ser capaz de agendar consultas médicas no sistema.
+11) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  O usuário acessa a opção “Agendar consulta”. 
+  O sistema exibe lista de especialidades médicas. 
+  O usuário seleciona uma especialidade. 
+  O sistema exibe lista de médicos disponíveis. 
+  O usuário seleciona um médico. 
+  O sistema exibe agenda com datas e horários disponíveis. 
+  O usuário seleciona data e horário. 
+  O sistema solicita confirmação dos dados. 
+  O usuário confirma o agendamento. 
+  O sistema verifica novamente a disponibilidade do horário. 
+  O sistema registra a consulta no banco de dados. 
+  O sistema bloqueia o horário na agenda do médico. 
+  O sistema gera um identificador único para a consulta. 
+  O sistema exibe mensagem de sucesso. 
+  O sistema envia confirmação (e-mail ou notificação).
+Fluxo de Eventos de Exceção:
+  E1: Horário já reservado → sistema solicita novo horário 
+  E2: Médico indisponível → sistema retorna lista atualizada 
+  E3: Falha na confirmação → operação cancelada 
+  E4: Sistema indisponível → erro exibido 
+  E5: Dados inconsistentes → bloqueio do agendamento
+
+
+-
+
+12) Definição do requisito funcional de usuário:
+-O administrador deve ser capaz de cadastrar e gerenciar usuários no sistema.
+12) Especificação do requisito de sistema:
+Fluxo de Eventos Normal:
+-  O administrador acessa o painel de controle. 
+  O sistema exibe opções:
+  Cadastrar usuário 
+  Editar usuário 
+  Excluir usuário
+
+
+  O administrador seleciona “Cadastrar usuário”. 
+  O sistema solicita:
+  Nome 
+  E-mail 
+  Perfil (admin, usuário comum, etc.)
+
+
+  O administrador preenche os dados. 
+  O sistema valida:
+  Campos obrigatórios 
+  Formato do e-mail
+
+
+  O sistema verifica duplicidade de e-mail. 
+  O sistema cria o usuário no banco. 
+  O sistema gera senha inicial. 
+  O sistema registra a ação (log). 
+  O sistema exibe confirmação.
+
+
+Fluxo de Eventos de Exceção:
+-  E1: E-mail já cadastrado 
+  E2: Dados inválidos 
+  E3: Falha no banco de dados 
+  E4: Permissão insuficiente 
+  E5: Tentativa de exclusão de usuário crítico
