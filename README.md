@@ -6,6 +6,7 @@
 - Gabriel Silva Santos
 - Davi Sanchez Nogueira
 - Kauã dos Santos Silva
+- Maria Eduarda Santana de Souza
 
 ## 📌 Proposta do Projeto
 Desenvolver um sistema de organização de estoque com o objetivo de controlar produtos, entradas e saídas, facilitando a gestão e evitando perdas.
