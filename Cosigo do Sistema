@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garotos Vadios ERP</title>
+<style>
+:root{--bg:#1b2026;--painel:#242b33;--p2:#2c343d;--borda:#37414c;--texto:#e3e8ee;--suave:#9aa6b2;--ac:#5aa9a3;--ac2:#468882;--perigo:#c96b6b;--aviso:#d1a45a;--ok:#6bb38a}
+*{box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--texto)}
+[hidden]{display:none!important}
+small{color:var(--suave)}
+h1{font-size:26px;margin:0 0 18px}h3{margin:0 0 12px}
+input,select,button{padding:9px 11px;border-radius:6px;font-size:14px;border:1px solid var(--borda);background:var(--p2);color:var(--texto)}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--ac);border-color:transparent}
+button{cursor:pointer;background:var(--ac2);border:none;color:#fff}button:hover{background:var(--ac)}
+button.sec{background:var(--p2);border:1px solid var(--borda);color:var(--texto)}button.sec:hover{background:var(--borda)}
+button.perigo{background:var(--perigo)}
+label{display:block;font-size:12px;color:var(--suave);margin-bottom:4px}
+#telaLogin{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.login{background:var(--painel);border:1px solid var(--borda);border-radius:10px;padding:32px;width:100%;max-width:390px}
+.login h1{margin-bottom:4px}.login p{margin:0 0 20px;color:var(--suave);font-size:14px}
+.login input{width:100%;margin-bottom:14px}.login button{width:100%;padding:11px}
+.erro{color:var(--perigo);font-size:13px;min-height:18px;margin-bottom:8px}
+#app{display:flex;min-height:100vh}
+aside{width:250px;background:var(--painel);border-right:1px solid var(--borda);padding:20px 14px;position:fixed;top:0;bottom:0;display:flex;flex-direction:column;overflow-y:auto}
+aside h2{margin:0 8px 2px;font-size:19px;color:var(--ac)}aside>small{margin:0 8px 18px;display:block}
+aside nav{display:flex;flex-direction:column;gap:4px;flex:1}
+aside nav button{background:transparent;text-align:left;color:var(--suave);padding:10px 12px}
+aside nav button:hover{background:var(--p2);color:var(--texto)}
+aside nav button.ativa{background:var(--ac2);color:#fff}
+.eu{border-top:1px solid var(--borda);padding-top:12px;font-size:13px;display:flex;flex-direction:column;gap:8px}
+main{margin-left:250px;padding:24px;width:calc(100% - 250px);max-width:1250px}
+.topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}.topo h1{margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--painel);border:1px solid var(--borda);border-radius:8px;padding:14px 16px;color:var(--suave);font-size:13px}
+.card b{display:block;font-size:24px;color:var(--texto);margin-top:4px}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.painel{background:var(--painel);border:1px solid var(--borda);border-radius:8px;padding:16px;margin-bottom:16px}
+.barra{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.barra input{flex:1;min-width:200px}
+.rolagem{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th,td{padding:10px;text-align:left;border-bottom:1px solid var(--borda);vertical-align:middle}
+th{color:var(--suave);font-size:12px;font-weight:600;white-space:nowrap}th.o{cursor:pointer}th.o:hover{color:var(--texto)}
+tr.baixo td{background:rgba(201,107,107,.08)}
+.thumb,.sf{width:54px;height:54px;border-radius:6px;background:var(--p2)}.thumb{object-fit:cover;display:block}
+.sf{border:1px dashed var(--borda);font-size:10px;color:var(--suave);display:flex;align-items:center;justify-content:center;text-align:center}
+.tag{padding:3px 10px;border-radius:10px;font-size:12px;white-space:nowrap}
+.tag.ok{background:rgba(107,179,138,.18);color:var(--ok)}.tag.baixo{background:rgba(201,107,107,.18);color:var(--perigo)}.tag.zero{background:rgba(209,164,90,.18);color:var(--aviso)}
+.acoes{display:flex;gap:6px;flex-wrap:wrap}.acoes button{padding:5px 11px;font-size:13px}
+.linha{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--borda);gap:10px}
+.form{max-width:460px}.form>div{margin-bottom:14px}.form input,.form select{width:100%}
+dialog{background:var(--painel);color:var(--texto);border:1px solid var(--borda);border-radius:10px;padding:22px;width:92%;max-width:560px}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.form2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form2 input,.form2 select{width:100%}.cheio{grid-column:1/-1}
+.rodape{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+#prev{max-width:140px;max-height:140px;border-radius:6px;margin-top:8px;display:block}
+@media(max-width:820px){aside{position:static;width:100%}#app{flex-direction:column}aside nav{flex-direction:row;flex-wrap:wrap}main{margin:0;width:100%;padding:14px}.duas,.form2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section id="telaLogin">
+  <div class="login">
+    <h1>Garotos Vadios</h1>
+    <p>Sistema de controle de estoque</p>
+    <label>E-mail</label><input id="lEmail" type="email" autocomplete="username">
+    <label>Senha</label><input id="lSenha" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')entrar()">
+    <div class="erro" id="lErro"></div>
+    <button onclick="entrar()">Entrar</button>
+  </div>
+</section>
+
+<div id="app" hidden>
+  <aside>
+    <h2>Garotos Vadios</h2><small>ERP - Linha branca</small>
+    <nav id="menu"></nav>
+    <div class="eu"><span id="quem"></span><button class="sec" onclick="sair()">Sair</button></div>
+  </aside>
+  <main id="conteudo"></main>
+</div>
+
+<dialog id="dlg">
+  <h3 id="dlgT"></h3><div id="dlgC"></div>
+  <div class="rodape"><button class="sec" onclick="dlg.close()">Cancelar</button><button id="dlgOk">Salvar</button></div>
+</dialog>
+
+<script>
+const CATEGORIAS=["Televisão","Celular","Geladeira","Fogão","Micro-ondas","Máquina de lavar","Ar-condicionado","Notebook","Outros"];
+const K={itens:"gv_itens",clientes:"gv_clientes",fornecedores:"gv_fornecedores",users:"gv_users",log:"gv_log"};
+const MENU=[["dashboard","Dashboard"],["estoque","Estoque"],["entrada","Entrada de mercadorias"],["saida","Saída de mercadorias"],["clientes","Clientes",1],["fornecedores","Fornecedores",1],["relatorios","Relatórios",1],["historico","Histórico"],["usuarios","Usuários",1]];
+const CAD={
+  clientes:{t:"cliente",tt:"Clientes",f:[["nome","Nome"],["telefone","Telefone"],["email","E-mail"],["cidade","Cidade"]]},
+  fornecedores:{t:"fornecedor",tt:"Fornecedores",f:[["nome","Empresa"],["contato","Contato"],["telefone","Telefone"],["cidade","Cidade"]]}
+};
+const $=id=>document.getElementById(id);
+const ler=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const gravar=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{alert("Armazenamento cheio. Use fotos menores ou remova produtos.")}};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const moeda=v=>Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const cp=(id,l,t,v,x="")=>`<div><label>${l}</label><input id="${id}" type="${t}" value="${esc(v)}" ${x}></div>`;
+
+const D={};
+for(const t in K)D[t]=ler(K[t],[]);
+const salvar=t=>gravar(K[t],D[t]);
+let sessao=ler("gv_sessao",null),ord={campo:"nome",asc:true},telaAtual="dashboard",foto="",aoOk=null;
+const adm=()=>sessao&&sessao.perfil==="admin";
+
+/* Aproveita os dados do projeto antigo (indexV8), se existirem */
+function migrar(){
+  if(localStorage.getItem(K.itens)!==null)return;
+  D.itens=ler("produtos",[]).map((x,i)=>({id:Date.now()+i,codigo:String(x.codigo||""),nome:x.nome||"",marca:"",categoria:x.categoria||"Outros",local:x.local||"",qtd:Number(x.quantidade)||0,minimo:5,preco:Number(x.valor)||0,foto:""}));
+  ["clientes","fornecedores"].forEach(t=>{D[t]=ler(t,[]).map((x,i)=>({id:Date.now()+i,...x}))});
+  ["itens","clientes","fornecedores"].forEach(salvar);
+}
+
+async function hash(s){
+  if(window.crypto&&crypto.subtle){
+    const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));
+    return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+  }
+  let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return"s"+h;
+}
+async function semear(){
+  if(D.users.length)return;
+  D.users=[
+    {email:"admin@garotosvadios.com",nome:"Administrador",perfil:"admin",hash:await hash("123456")},
+    {email:"funcionario@garotosvadios.com",nome:"Funcionário",perfil:"funcionario",hash:await hash("123456")}
+  ];
+  salvar("users");
+}
+
+/* Login */
+async function entrar(){
+  const e=$("lEmail").value.trim().toLowerCase(),h=await hash($("lSenha").value);
+  const u=D.users.find(x=>x.email.toLowerCase()===e&&x.hash===h);
+  if(!u){$("lErro").textContent="E-mail ou senha incorretos.";return}
+  sessao={email:u.email,nome:u.nome,perfil:u.perfil};
+  sessionStorage.setItem("gv_sessao",JSON.stringify(sessao));
+  $("lErro").textContent="";$("lSenha").value="";
+  reg("Acesso","Entrou no sistema");iniciar();
+}
+function sair(){sessionStorage.removeItem("gv_sessao");location.reload()}
+function iniciar(){
+  $("telaLogin").hidden=true;$("app").hidden=false;
+  $("quem").textContent=`${sessao.nome} (${adm()?"Administrador":"Funcionário"})`;
+  $("menu").innerHTML=MENU.filter(m=>!m[2]||adm()).map(m=>`<button data-t="${m[0]}" onclick="mostrar('${m[0]}')">${m[1]}</button>`).join("");
+  mostrar("dashboard");
+}
+function mostrar(t){
+  const m=MENU.find(x=>x[0]===t);
+  if(!m||(m[2]&&!adm()))return;
+  telaAtual=t;
+  document.querySelectorAll("#menu button").forEach(b=>b.classList.toggle("ativa",b.dataset.t===t));
+  (CAD[t]?()=>telaCad(t):TELAS[t])();
+}
+
+/* Histórico */
+function reg(tipo,desc){
+  D.log.unshift({data:new Date().toLocaleString("pt-BR"),usuario:sessao.nome,tipo,desc});
+  D.log=D.log.slice(0,500);salvar("log");
+}
+
+/* Janela genérica */
+function modal(t,html,ok,txt="Salvar"){
+  $("dlgT").textContent=t;$("dlgC").innerHTML=html;$("dlgOk").textContent=txt;aoOk=ok;$("dlg").showModal();
+}
+$("dlgOk").onclick=async()=>{if(await aoOk()!==false)$("dlg").close()};
+
+/* Telas */
+const TELAS={
+  dashboard(){
+    const baixos=D.itens.filter(i=>i.qtd<=i.minimo);
+    const c=[["Produtos",D.itens.length],["Unidades em estoque",D.itens.reduce((s,i)=>s+i.qtd,0)],["Estoque baixo",baixos.length]];
+    if(adm())c.push(["Clientes",D.clientes.length],["Fornecedores",D.fornecedores.length],["Valor do estoque",moeda(D.itens.reduce((s,i)=>s+i.qtd*i.preco,0))]);
+    $("conteudo").innerHTML=`<h1>Dashboard</h1>
+    <div class="cards">${c.map(x=>`<div class="card">${x[0]}<b>${x[1]}</b></div>`).join("")}</div>
+    <div class="duas">
+      <div class="painel"><h3>Precisam de reposição</h3>${baixos.slice(0,8).map(i=>`<div class="linha"><span>${esc(i.nome)}</span><b>${i.qtd} un.</b></div>`).join("")||"<small>Nenhum produto com estoque baixo.</small>"}</div>
+      <div class="painel"><h3>Últimas movimentações</h3>${D.log.filter(l=>l.tipo!=="Acesso").slice(0,8).map(l=>`<div class="linha"><span>${esc(l.desc)}</span><small>${esc(l.data)}</small></div>`).join("")||"<small>Nenhuma movimentação registrada.</small>"}</div>
+    </div>`;
+  },
+
+  estoque(){
+    const cats=[...new Set([...CATEGORIAS,...D.itens.map(i=>i.categoria)])].sort();
+    $("conteudo").innerHTML=`<div class="topo"><h1>Estoque</h1>${adm()?`<button onclick="modalItem()">Novo produto</button>`:""}</div>
+    <div class="painel"><div class="barra">
+      <input id="busca" placeholder="Buscar por nome, marca, código, categoria ou local" oninput="pintarEstoque()">
+      <select id="fCatF" onchange="pintarEstoque()"><option value="">Todas as categorias</option>${cats.map(c=>`<option>${esc(c)}</option>`).join("")}</select>
+      <select id="fSt" onchange="pintarEstoque()"><option value="">Todos os status</option><option value="baixo">Só estoque baixo</option></select>
+    </div><div class="rolagem"><table><thead id="cab"></thead><tbody id="corpo"></tbody></table></div></div>`;
+    pintarEstoque();
+  },
+
+  entrada(){
+    $("conteudo").innerHTML=`<h1>Entrada de mercadorias</h1><div class="painel form">
+      <div><label>Produto</label><select id="eProd"><option value="">Selecione</option>${opcoesProdutos()}</select></div>
+      <div><label>Fornecedor</label><select id="eForn"><option>Não informado</option>${D.fornecedores.map(f=>`<option>${esc(f.nome)}</option>`).join("")}</select></div>
+      <div><label>Quantidade</label><input id="eQtd" type="number" min="1"></div>
+      <button onclick="if(mover($('eProd').value,1,parseInt($('eQtd').value),' - Fornecedor: '+$('eForn').value)){alert('Entrada registrada.');mostrar('entrada')}">Registrar entrada</button></div>`;
+  },
+
+  saida(){
+    $("conteudo").innerHTML=`<h1>Saída de mercadorias</h1><div class="painel form">
+      <div><label>Produto</label><select id="sProd"><option value="">Selecione</option>${opcoesProdutos()}</select></div>
+      <div><label>Motivo</label><select id="sMot"><option>Venda</option><option>Transferência</option><option>Perda ou avaria</option></select></div>
+      ${adm()?`<div><label>Cliente (opcional)</label><select id="sCli"><option value="">Nenhum</option>${D.clientes.map(c=>`<option>${esc(c.nome)}</option>`).join("")}</select></div>`:""}
+      <div><label>Quantidade</label><input id="sQtd" type="number" min="1"></div>
+      <button onclick="enviarSaida()">Registrar saída</button></div>`;
+  },
+
+  relatorios(){
+    const por={};
+    D.itens.forEach(i=>{const p=por[i.categoria]||(por[i.categoria]={n:0,q:0,v:0});p.n++;p.q+=i.qtd;p.v+=i.qtd*i.preco});
+    const baixos=D.itens.filter(i=>i.qtd<=i.minimo);
+    $("conteudo").innerHTML=`<div class="topo"><h1>Relatórios</h1><button class="sec" onclick="exportarCSV()">Exportar estoque em CSV</button></div>
+    <div class="duas">
+      <div class="painel"><h3>Resumo geral</h3>
+        <div class="linha"><span>Produtos</span><b>${D.itens.length}</b></div>
+        <div class="linha"><span>Clientes</span><b>${D.clientes.length}</b></div>
+        <div class="linha"><span>Fornecedores</span><b>${D.fornecedores.length}</b></div>
+        <div class="linha"><span>Valor do estoque</span><b>${moeda(D.itens.reduce((s,i)=>s+i.qtd*i.preco,0))}</b></div></div>
+      <div class="painel"><h3>Estoque baixo</h3>${baixos.map(i=>`<div class="linha"><span>${esc(i.nome)}</span><b>${i.qtd} un.</b></div>`).join("")||"<small>Nenhum produto com estoque baixo.</small>"}</div>
+    </div>
+    <div class="painel"><h3>Por categoria</h3><div class="rolagem"><table><thead><tr><th>Categoria</th><th>Produtos</th><th>Unidades</th><th>Valor em estoque</th></tr></thead><tbody>
+      ${Object.entries(por).map(([c,p])=>`<tr><td>${esc(c)}</td><td>${p.n}</td><td>${p.q}</td><td>${moeda(p.v)}</td></tr>`).join("")||`<tr><td colspan="4"><small>Sem dados.</small></td></tr>`}
+    </tbody></table></div></div>`;
+  },
+
+  historico(){
+    $("conteudo").innerHTML=`<h1>Histórico</h1><div class="painel"><div class="rolagem"><table><thead><tr><th>Data</th><th>Usuário</th><th>Tipo</th><th>Detalhe</th></tr></thead><tbody>
+    ${D.log.map(l=>`<tr><td>${esc(l.data)}</td><td>${esc(l.usuario)}</td><td>${esc(l.tipo)}</td><td>${esc(l.desc)}</td></tr>`).join("")||`<tr><td colspan="4"><small>Nada registrado ainda.</small></td></tr>`}
+    </tbody></table></div></div>`;
+  },
+
+  usuarios(){
+    $("conteudo").innerHTML=`<h1>Usuários</h1><div class="painel"><h3>Novo usuário</h3><div class="form2">
+      ${cp("uEmail","E-mail","email","")}${cp("uNome","Nome","text","")}${cp("uSenha","Senha (mínimo 4 caracteres)","password","")}
+      <div><label>Perfil</label><select id="uPerfil"><option value="funcionario">Funcionário</option><option value="admin">Administrador</option></select></div>
+    </div><div class="rodape"><button onclick="criarUsuario()">Criar usuário</button></div></div>
+    <div class="painel"><table><thead><tr><th>E-mail</th><th>Nome</th><th>Perfil</th><th></th></tr></thead><tbody>
+    ${D.users.map((u,i)=>`<tr><td>${esc(u.email)}</td><td>${esc(u.nome)}</td><td>${u.perfil==="admin"?"Administrador":"Funcionário"}</td>
+      <td>${u.email===sessao.email?"":`<button class="perigo" onclick="apagarUsuario(${i})">Excluir</button>`}</td></tr>`).join("")}
+    </tbody></table></div>`;
+  }
+};
+
+/* Estoque */
+const opcoesProdutos=()=>D.itens.map(i=>`<option value="${i.id}">${esc(i.codigo)} - ${esc(i.nome)} (${i.qtd} un.)</option>`).join("");
+function ordenar(c){ord.asc=ord.campo===c?!ord.asc:true;ord.campo=c;pintarEstoque()}
+function pintarEstoque(){
+  const q=$("busca").value.toLowerCase(),cat=$("fCatF").value,baixo=$("fSt").value==="baixo";
+  const L=D.itens.filter(i=>[i.nome,i.marca,i.codigo,i.categoria,i.local].join(" ").toLowerCase().includes(q)&&(!cat||i.categoria===cat)&&(!baixo||i.qtd<=i.minimo))
+    .sort((a,b)=>{const x=a[ord.campo],y=b[ord.campo];const r=typeof x==="number"?x-y:String(x).localeCompare(String(y),"pt-BR");return ord.asc?r:-r});
+  const s=c=>ord.campo===c?(ord.asc?" ▲":" ▼"):"";
+  $("cab").innerHTML=`<tr><th>Foto</th><th class="o" onclick="ordenar('codigo')">Código${s("codigo")}</th><th class="o" onclick="ordenar('nome')">Produto${s("nome")}</th><th class="o" onclick="ordenar('categoria')">Categoria${s("categoria")}</th><th class="o" onclick="ordenar('qtd')">Quantidade${s("qtd")}</th>${adm()?`<th class="o" onclick="ordenar('preco')">Preço${s("preco")}</th>`:""}<th class="o" onclick="ordenar('local')">Local${s("local")}</th><th>Status</th><th>Ações</th></tr>`;
+  $("corpo").innerHTML=L.map(i=>{
+    const b=i.qtd<=i.minimo;
+    const st=i.qtd===0?`<span class="tag zero">Sem estoque</span>`:b?`<span class="tag baixo">Estoque baixo</span>`:`<span class="tag ok">Normal</span>`;
+    return`<tr class="${b?"baixo":""}"><td>${i.foto?`<img class="thumb" src="${i.foto}">`:`<div class="sf">Sem foto</div>`}</td>
+    <td>${esc(i.codigo)}</td><td><b>${esc(i.nome)}</b><br><small>${esc(i.marca)}</small></td><td>${esc(i.categoria)}</td>
+    <td><b>${i.qtd}</b> <small>(mín. ${i.minimo})</small></td>${adm()?`<td>${moeda(i.preco)}</td>`:""}<td>${esc(i.local)}</td><td>${st}</td>
+    <td class="acoes"><button onclick="modalMov(${i.id},1)">Entrada</button><button class="sec" onclick="modalMov(${i.id},-1)">Saída</button>
+    ${adm()?`<button class="sec" onclick="modalItem(${i.id})">Editar</button><button class="perigo" onclick="removerItem(${i.id})">Excluir</button>`:""}</td></tr>`;
+  }).join("")||`<tr><td colspan="9"><small>Nenhum produto encontrado.</small></td></tr>`;
+}
+
+function reduzirFoto(arq){
+  return new Promise(res=>{
+    const r=new FileReader();
+    r.onload=()=>{const img=new Image();img.onload=()=>{
+      const e=Math.min(1,320/Math.max(img.width,img.height)),c=document.createElement("canvas");
+      c.width=Math.round(img.width*e);c.height=Math.round(img.height*e);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.75));
+    };img.src=r.result};
+    r.readAsDataURL(arq);
+  });
+}
+async function previa(){
+  const f=$("fFoto").files[0];if(!f)return;
+  foto=await reduzirFoto(f);$("prev").src=foto;$("prev").hidden=false;
+}
+
+function modalItem(id){
+  if(!adm())return;
+  const i=D.itens.find(x=>x.id===id)||{};foto=i.foto||"";
+  const cats=[...new Set([...CATEGORIAS,...D.itens.map(x=>x.categoria)])];
+  modal(id?"Editar produto":"Novo produto",`<div class="form2">
+    ${cp("fCod","Código / SKU","text",i.codigo)}${cp("fCat","Categoria","text",i.categoria,'list="cats"')}
+    <datalist id="cats">${cats.map(c=>`<option value="${esc(c)}">`).join("")}</datalist>
+    <div class="cheio">${cp("fNome","Produto","text",i.nome)}</div>
+    ${cp("fMarca","Marca","text",i.marca)}${cp("fLocal","Local de armazenagem","text",i.local)}
+    ${cp("fPreco","Preço (R$)","number",i.preco,'min="0" step="0.01"')}${cp("fQtd","Quantidade","number",i.qtd,'min="0"')}
+    ${cp("fMin","Estoque mínimo","number",i.minimo,'min="0"')}
+    <div class="cheio"><label>Foto do produto</label><input id="fFoto" type="file" accept="image/*" onchange="previa()"><img id="prev" ${foto?`src="${foto}"`:"hidden"}></div></div>`,
+  ()=>{
+    const codigo=$("fCod").value.trim(),nome=$("fNome").value.trim();
+    if(!codigo||!nome){alert("Informe código e nome do produto.");return false}
+    if(D.itens.some(x=>x.codigo===codigo&&x.id!==id)){alert("Já existe um produto com esse código.");return false}
+    const d={codigo,nome,marca:$("fMarca").value.trim(),categoria:$("fCat").value.trim()||"Outros",local:$("fLocal").value.trim(),
+      preco:Math.max(0,+$("fPreco").value||0),qtd:Math.max(0,parseInt($("fQtd").value)||0),minimo:Math.max(0,parseInt($("fMin").value)||0),foto};
+    if(id){
+      const it=D.itens.find(x=>x.id===id),antes=it.qtd;Object.assign(it,d);
+      reg("Edição",`Produto editado: ${nome}`+(antes!==d.qtd?` (quantidade ${antes} para ${d.qtd})`:""));
+    }else{D.itens.push({id:Date.now(),...d});reg("Cadastro",`Produto cadastrado: ${nome} (${d.qtd} un.)`)}
+    salvar("itens");mostrar("estoque");
+  });
+}
+function removerItem(id){
+  const i=D.itens.find(x=>x.id===id);
+  if(!adm()||!i||!confirm(`Excluir "${i.nome}" do estoque?`))return;
+  reg("Exclusão",`Produto removido: ${i.nome}`);
+  D.itens=D.itens.filter(x=>x.id!==id);salvar("itens");mostrar("estoque");
+}
+
+/* Entrada e saída */
+function mover(id,sinal,n,extra=""){
+  const i=D.itens.find(x=>x.id==id);
+  if(!i)return alert("Selecione um produto."),false;
+  if(!(n>0))return alert("Informe uma quantidade maior que zero."),false;
+  if(sinal<0&&n>i.qtd)return alert(`Estoque insuficiente. Disponível: ${i.qtd}.`),false;
+  i.qtd+=sinal*n;salvar("itens");
+  reg(sinal>0?"Entrada":"Saída",`${sinal>0?"+":"-"}${n} un. de ${i.nome} (saldo ${i.qtd})${extra}`);
+  return true;
+}
+function modalMov(id,sinal){
+  const i=D.itens.find(x=>x.id===id);
+  modal(`${sinal>0?"Entrada":"Saída"}: ${i.nome}`,`<label>Quantidade de unidades</label><input id="mQtd" type="number" min="1" style="width:100%">`,
+    ()=>{if(!mover(id,sinal,parseInt($("mQtd").value)))return false;mostrar("estoque")},"Confirmar");
+}
+function enviarSaida(){
+  const cli=$("sCli")&&$("sCli").value?" - Cliente: "+$("sCli").value:"";
+  if(mover($("sProd").value,-1,parseInt($("sQtd").value),` - ${$("sMot").value}${cli}`)){alert("Saída registrada.");mostrar("saida")}
+}
+
+/* Clientes e fornecedores (mesma tela para os dois) */
+function telaCad(tp){
+  const C=CAD[tp];
+  $("conteudo").innerHTML=`<div class="topo"><h1>${C.tt}</h1><button onclick="modalCad('${tp}')">Novo ${C.t}</button></div>
+  <div class="painel"><div class="rolagem"><table><thead><tr>${C.f.map(f=>`<th>${f[1]}</th>`).join("")}<th></th></tr></thead><tbody>
+  ${D[tp].map(r=>`<tr>${C.f.map(f=>`<td>${esc(r[f[0]])}</td>`).join("")}<td class="acoes"><button class="sec" onclick="modalCad('${tp}',${r.id})">Editar</button><button class="perigo" onclick="apagarCad('${tp}',${r.id})">Excluir</button></td></tr>`).join("")||`<tr><td colspan="5"><small>Nenhum registro cadastrado.</small></td></tr>`}
+  </tbody></table></div></div>`;
+}
+function modalCad(tp,id){
+  const C=CAD[tp],r=D[tp].find(x=>x.id===id)||{};
+  modal(id?`Editar ${C.t}`:`Novo ${C.t}`,`<div class="form2">${C.f.map(f=>cp("c_"+f[0],f[1],"text",r[f[0]])).join("")}</div>`,()=>{
+    const d={};C.f.forEach(f=>d[f[0]]=$("c_"+f[0]).value.trim());
+    if(!d.nome){alert("Informe o nome.");return false}
+    if(id)Object.assign(r,d);else D[tp].push({id:Date.now(),...d});
+    reg("Cadastro",`${C.t[0].toUpperCase()+C.t.slice(1)} ${id?"editado":"cadastrado"}: ${d.nome}`);
+    salvar(tp);mostrar(tp);
+  });
+}
+function apagarCad(tp,id){
+  const r=D[tp].find(x=>x.id===id);
+  if(!r||!confirm(`Excluir "${r.nome}"?`))return;
+  reg("Exclusão",`${CAD[tp].t[0].toUpperCase()+CAD[tp].t.slice(1)} removido: ${r.nome}`);
+  D[tp]=D[tp].filter(x=>x.id!==id);salvar(tp);mostrar(tp);
+}
+
+/* Usuários */
+async function criarUsuario(){
+  if(!adm())return;
+  const email=$("uEmail").value.trim(),nome=$("uNome").value.trim(),senha=$("uSenha").value;
+  if(!email||!nome||senha.length<4)return alert("Preencha tudo. A senha precisa de ao menos 4 caracteres.");
+  if(D.users.some(u=>u.email.toLowerCase()===email.toLowerCase()))return alert("Esse e-mail já está cadastrado.");
+  D.users.push({email,nome,perfil:$("uPerfil").value,hash:await hash(senha)});
+  salvar("users");reg("Usuário",`Usuário criado: ${email}`);mostrar("usuarios");
+}
+function apagarUsuario(i){
+  if(!adm()||!confirm(`Excluir o usuário "${D.users[i].email}"?`))return;
+  reg("Usuário",`Usuário removido: ${D.users[i].email}`);
+  D.users.splice(i,1);salvar("users");mostrar("usuarios");
+}
+
+/* Exportar */
+function exportarCSV(){
+  if(!adm())return;
+  const l=["codigo;nome;marca;categoria;local;quantidade;minimo;preco",...D.itens.map(i=>[i.codigo,i.nome,i.marca,i.categoria,i.local,i.qtd,i.minimo,i.preco].join(";"))];
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob(["\ufeff"+l.join("\n")],{type:"text/csv"}));a.download="estoque.csv";a.click();
+}
+
+/* Início */
+migrar();
+semear().then(()=>{if(sessao)iniciar()});
+</script>
+</body>
+</html>
