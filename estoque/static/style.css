@@ -1,0 +1,491 @@
+:root {
+      --bg: #1b2026;
+      --painel: #242b33;
+      --p2: #2c343d;
+      --borda: #37414c;
+      --texto: #e3e8ee;
+      --suave: #9aa6b2;
+      --ac: #5aa9a3;
+      --ac2: #468882;
+      --perigo: #c96b6b;
+      --aviso: #d1a45a;
+      --ok: #6bb38a;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--texto);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    small {
+      color: var(--suave);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 18px;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+    }
+
+    input,
+    select,
+    button {
+      padding: 9px 11px;
+      border-radius: 6px;
+      font-size: 14px;
+      border: 1px solid var(--borda);
+      background: var(--p2);
+      color: var(--texto);
+    }
+
+    input:focus,
+    select:focus,
+    button:focus-visible {
+      outline: 2px solid var(--ac);
+      border-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+      background: var(--ac2);
+      border: none;
+      color: #fff;
+    }
+
+    button:hover {
+      background: var(--ac);
+    }
+
+    button.sec {
+      background: var(--p2);
+      border: 1px solid var(--borda);
+      color: var(--texto);
+    }
+
+    button.sec:hover {
+      background: var(--borda);
+    }
+
+    button.perigo {
+      background: var(--perigo);
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--suave);
+      margin-bottom: 4px;
+    }
+
+    /* Login */
+    #telaLogin {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .login {
+      background: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+      padding: 32px;
+      width: 100%;
+      max-width: 390px;
+    }
+
+    .login h1 {
+      margin-bottom: 4px;
+    }
+
+    .login p {
+      margin: 0 0 20px;
+      color: var(--suave);
+      font-size: 14px;
+    }
+
+    .login input {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .login button {
+      width: 100%;
+      padding: 11px;
+    }
+
+    .erro {
+      color: var(--perigo);
+      font-size: 13px;
+      min-height: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* Layout principal */
+    #app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    aside {
+      width: 250px;
+      background: var(--painel);
+      border-right: 1px solid var(--borda);
+      padding: 20px 14px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    aside h2 {
+      margin: 0 8px 2px;
+      font-size: 19px;
+      color: var(--ac);
+    }
+
+    aside>small {
+      margin: 0 8px 18px;
+      display: block;
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    aside nav button {
+      background: transparent;
+      text-align: left;
+      color: var(--suave);
+      padding: 10px 12px;
+    }
+
+    aside nav button:hover {
+      background: var(--p2);
+      color: var(--texto);
+    }
+
+    aside nav button.ativa {
+      background: var(--ac2);
+      color: #fff;
+    }
+
+    .eu {
+      border-top: 1px solid var(--borda);
+      padding-top: 12px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    main {
+      margin-left: 250px;
+      padding: 24px;
+      width: calc(100% - 250px);
+      max-width: 1250px;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+
+    .topo h1 {
+      margin: 0;
+    }
+
+    /* Cards e painéis */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: var(--suave);
+      font-size: 13px;
+    }
+
+    .card b {
+      display: block;
+      font-size: 24px;
+      color: var(--texto);
+      margin-top: 4px;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .painel {
+      background: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .barra {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .barra input {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* Tabelas */
+    .rolagem {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--suave);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    th.o {
+      cursor: pointer;
+    }
+
+    th.o:hover {
+      color: var(--texto);
+    }
+
+    tr.baixo td {
+      background: rgba(201, 107, 107, .08);
+    }
+
+    .thumb,
+    .sf {
+      width: 54px;
+      height: 54px;
+      border-radius: 6px;
+      background: var(--p2);
+    }
+
+    .thumb {
+      object-fit: cover;
+      display: block;
+    }
+
+    .sf {
+      border: 1px dashed var(--borda);
+      font-size: 10px;
+      color: var(--suave);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .tag {
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .tag.ok {
+      background: rgba(107, 179, 138, .18);
+      color: var(--ok);
+    }
+
+    .tag.baixo {
+      background: rgba(201, 107, 107, .18);
+      color: var(--perigo);
+    }
+
+    .tag.zero {
+      background: rgba(209, 164, 90, .18);
+      color: var(--aviso);
+    }
+
+    .acoes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .acoes button {
+      padding: 5px 11px;
+      font-size: 13px;
+    }
+
+    .linha {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--borda);
+      gap: 10px;
+    }
+
+    /* Formulários e janela */
+    .form {
+      max-width: 460px;
+    }
+
+    .form>div {
+      margin-bottom: 14px;
+    }
+
+    .form input,
+    .form select {
+      width: 100%;
+    }
+
+    dialog {
+      background: var(--painel);
+      color: var(--texto);
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+      padding: 22px;
+      width: 92%;
+      max-width: 560px;
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, .6);
+    }
+
+    .form2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form2 input,
+    .form2 select {
+      width: 100%;
+    }
+
+    .cheio {
+      grid-column: 1 / -1;
+    }
+
+    .rodape {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    #prev {
+      max-width: 140px;
+      max-height: 140px;
+      border-radius: 6px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Refinamento visual e acessibilidade */
+    body { line-height: 1.45; background-image: radial-gradient(ellipse at top right, rgba(90,169,163,.08), transparent 42%); }
+    aside { box-shadow: 8px 0 30px rgba(0,0,0,.12); z-index: 5; }
+    main { max-width: none; padding: clamp(18px, 2.4vw, 34px); }
+    h1 { letter-spacing: -.035em; font-size: clamp(24px, 2.4vw, 32px); }
+    .painel, .card, .login { box-shadow: 0 8px 24px rgba(0,0,0,.10); }
+    .painel { border-radius: 12px; }
+    .card { border-radius: 12px; padding: 18px; }
+    .card b { font-size: clamp(22px, 2vw, 29px); letter-spacing: -.03em; }
+    input, select, button { min-height: 40px; transition: border-color .16s ease, background .16s ease, transform .16s ease; }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    input, select { width: 100%; }
+    th { background: rgba(44,52,61,.65); }
+    tbody tr:hover td { background-color: rgba(90,169,163,.045); }
+    .topo { flex-wrap: wrap; }
+    .status-conexao { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; border: 1px solid var(--borda); border-radius: 999px; padding: 5px 9px; margin: 0 0 14px; color: var(--suave); }
+    .status-conexao::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--aviso); }
+    .status-conexao.online::before { background: var(--ok); }
+    .status-conexao.offline { color: #e1bc7d; }
+    .notificacoes { position: fixed; top: 16px; right: 16px; z-index: 1000; display: grid; gap: 8px; width: min(390px, calc(100vw - 32px)); }
+    .toast { border: 1px solid var(--borda); border-left: 4px solid var(--ac); border-radius: 9px; padding: 12px 14px; background: #242b33; color: var(--texto); box-shadow: 0 10px 30px rgba(0,0,0,.28); font-size: 13px; }
+    .toast.erro { border-left-color: var(--perigo); }
+    .toast.sucesso { border-left-color: var(--ok); }
+    .login .status-conexao { margin-top: 2px; }
+    .login button { min-height: 46px; font-weight: 650; }
+    .acoes button { min-height: 34px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+
+    /* Celular */
+    @media (max-width: 820px) {
+      aside {
+        position: static;
+        width: 100%;
+        padding: 16px;
+        border-right: 0;
+        border-bottom: 1px solid var(--borda);
+      }
+      aside nav button { flex: 1 1 145px; min-height: 42px; }
+      .eu { margin-top: 12px; }
+      .login { padding: 25px 20px; }
+      .barra input { min-width: 100%; }
+
+      #app {
+        flex-direction: column;
+      }
+
+      aside nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      main {
+        margin: 0;
+        width: 100%;
+        padding: 14px;
+      }
+
+      .duas,
+      .form2 {
+        grid-template-columns: 1fr;
+      }
+    }

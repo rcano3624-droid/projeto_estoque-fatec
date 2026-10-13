@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NetHub ERP</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div id="notificacoes" class="notificacoes" aria-live="polite"></div>
+  <section id="telaLogin">
+    <div class="login">
+      <h1>NetHub</h1>
+      <p>Sistema de controle de estoque</p>
+      <div class="status-conexao offline" id="statusConexao">Modo demonstração · sem servidor</div>
+      <label>E-mail</label>
+      <input id="lEmail" type="email" autocomplete="username">
+      <label>Senha</label>
+      <input id="lSenha" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')entrar()">
+      <div class="erro" id="lErro"></div>
+      <button onclick="entrar()">Entrar</button>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <aside>
+      <h2>NetHub</h2>
+      <small>ERP - Linha branca</small>
+      <nav id="menu"></nav>
+      <div class="eu">
+        <span id="quem"></span>
+        <button class="sec" onclick="sair()">Sair</button>
+      </div>
+    </aside>
+    <main id="conteudo"></main>
+  </div>
+
+  <dialog id="dlg">
+    <h3 id="dlgT"></h3>
+    <div id="dlgC"></div>
+    <div class="rodape">
+      <button class="sec" onclick="dlg.close()">Cancelar</button>
+      <button id="dlgOk">Salvar</button>
+    </div>
+  </dialog>
+
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</body>
+
+</html>
