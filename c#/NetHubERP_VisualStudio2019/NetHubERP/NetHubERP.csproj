@@ -14,13 +14,23 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType><Optimize>true</Optimize><OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -37,29 +47,80 @@
     <Compile Include="Data\Db.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="UI\Theme.cs" />
-    <Compile Include="UI\Page.cs" />
-    <Compile Include="Forms\FrmLogin.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmLogin.Designer.cs"><DependentUpon>FrmLogin.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmMain.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmMain.Designer.cs"><DependentUpon>FrmMain.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmProduct.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmProduct.Designer.cs"><DependentUpon>FrmProduct.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmContact.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmContact.Designer.cs"><DependentUpon>FrmContact.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmMove.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmMove.Designer.cs"><DependentUpon>FrmMove.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmUser.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmUser.Designer.cs"><DependentUpon>FrmUser.cs</DependentUpon></Compile>
-    <Compile Include="Forms\FrmInitialAdmin.cs"><SubType>Form</SubType></Compile>
-    <Compile Include="Forms\FrmInitialAdmin.Designer.cs"><DependentUpon>FrmInitialAdmin.cs</DependentUpon></Compile>
-    <Compile Include="Views\ViewDashboard.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewStock.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewEntryExit.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewContacts.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewReports.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewHistory.cs"><SubType>UserControl</SubType></Compile>
-    <Compile Include="Views\ViewUsers.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="UI\Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmProduct.Designer.cs">
+      <DependentUpon>FrmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmContact.Designer.cs">
+      <DependentUpon>FrmContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMove.Designer.cs">
+      <DependentUpon>FrmMove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUser.Designer.cs">
+      <DependentUpon>FrmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmInitialAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmInitialAdmin.Designer.cs">
+      <DependentUpon>FrmInitialAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewEntryExit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewContacts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewUsers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
-  <ItemGroup><None Include="App.config" /></ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\FrmProduct.resx">
+      <DependentUpon>FrmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

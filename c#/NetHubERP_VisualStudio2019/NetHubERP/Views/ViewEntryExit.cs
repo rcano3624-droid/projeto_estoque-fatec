@@ -91,7 +91,7 @@ namespace NetHubERP.Views
                       (Current.Admin && contactId.HasValue ? " - Cliente: " + selected.Label : "");
                 Repository.Move(item.Id, _entry, (int)quantity.Value, why,
                     _entry ? (int?)null : contactId, _entry ? contactId : (int?)null, Current);
-                Theme.Success(FindForm(), _entry ? "Entrada registrada." : "Saída registrada.");
+                Theme.Info(FindForm(), _entry ? "Entrada registrada." : "Saída registrada.");
                 Navigate(_entry ? "entrada" : "saida");
             }
             catch (Exception ex) { Theme.Error(FindForm(), ex); }

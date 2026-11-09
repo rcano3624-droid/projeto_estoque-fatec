@@ -90,7 +90,7 @@ namespace NetHubERP.Views
                             CsvCell(p.Categoria), CsvCell(p.Local), p.Quantidade.ToString(), p.Minimo.ToString(),
                             p.Preco.ToString("0.00", System.Globalization.CultureInfo.GetCultureInfo("pt-BR")) }));
                     File.WriteAllLines(dialog.FileName, lines, new UTF8Encoding(true));
-                    Theme.Success(FindForm(), "Arquivo CSV exportado com sucesso.");
+                    Theme.Info(FindForm(), "Arquivo CSV exportado com sucesso.");
                 }
             }
             catch (Exception ex) { Theme.Error(FindForm(), ex); }

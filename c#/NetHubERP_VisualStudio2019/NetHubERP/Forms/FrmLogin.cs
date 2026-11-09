@@ -88,7 +88,7 @@ namespace NetHubERP.Forms
         private void Login()
         {
             if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
-            { Theme.Success(this, "Informe e-mail e senha."); return; }
+            { Theme.Info(this, "Informe e-mail e senha."); return; }
             try
             {
                 var user = Repository.Authenticate(txtEmail.Text, txtPassword.Text);

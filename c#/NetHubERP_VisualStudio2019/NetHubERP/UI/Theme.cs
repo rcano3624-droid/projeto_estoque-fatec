@@ -128,7 +128,7 @@ namespace NetHubERP.UI
                 message = "Não foi possível conectar ao SQL Server. Confira o App.config, a instância e o banco NetHubERP.";
             MessageBox.Show(owner, message, "NetHub ERP — Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        public static void Success(IWin32Window owner, string msg)
+        public static void Info(IWin32Window owner, string msg)
         {
             MessageBox.Show(owner, msg, "NetHub ERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
