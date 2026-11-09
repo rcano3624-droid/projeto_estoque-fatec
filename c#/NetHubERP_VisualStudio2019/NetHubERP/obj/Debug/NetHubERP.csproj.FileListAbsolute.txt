@@ -1,0 +1,9 @@
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.csproj.AssemblyReference.cache
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.Forms.FrmProduct.resources
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.csproj.GenerateResource.cache
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.csproj.CoreCompileInputs.cache
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\bin\Debug\NetHubERP.exe.config
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\bin\Debug\NetHubERP.exe
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\bin\Debug\NetHubERP.pdb
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.exe
+C:\Users\Kauã\source\repos\projeto_estoque-fatec\c#\NetHubERP_VisualStudio2019\NetHubERP\obj\Debug\NetHubERP.pdb
