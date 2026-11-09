@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A36BD72-E1AF-4EB3-8190-D173430F3C72}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>NetHubERP</RootNamespace>
+    <AssemblyName>NetHubERP</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType><Optimize>true</Optimize><OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Models\Entities.cs" />
+    <Compile Include="Data\Db.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="UI\Theme.cs" />
+    <Compile Include="UI\Page.cs" />
+    <Compile Include="Forms\FrmLogin.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmLogin.Designer.cs"><DependentUpon>FrmLogin.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmMain.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmMain.Designer.cs"><DependentUpon>FrmMain.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmProduct.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmProduct.Designer.cs"><DependentUpon>FrmProduct.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmContact.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmContact.Designer.cs"><DependentUpon>FrmContact.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmMove.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmMove.Designer.cs"><DependentUpon>FrmMove.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmUser.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmUser.Designer.cs"><DependentUpon>FrmUser.cs</DependentUpon></Compile>
+    <Compile Include="Forms\FrmInitialAdmin.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Forms\FrmInitialAdmin.Designer.cs"><DependentUpon>FrmInitialAdmin.cs</DependentUpon></Compile>
+    <Compile Include="Views\ViewDashboard.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewStock.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewEntryExit.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewContacts.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewReports.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewHistory.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\ViewUsers.cs"><SubType>UserControl</SubType></Compile>
+  </ItemGroup>
+  <ItemGroup><None Include="App.config" /></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
